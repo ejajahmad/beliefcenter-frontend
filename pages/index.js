@@ -1,6 +1,7 @@
 import Container from '@/components/Global/Container'
 import Header from '@/components/Global/Header'
 import BannerFeatured from '@/components/Home/BannerFeatured'
+import MainPost from '@/components/Home/MainPost'
 import SearchBox from '@/components/Home/SearchBox'
 import React from 'react'
 
@@ -18,6 +19,7 @@ function Home() {
           </div>
           <BannerFeatured />
           <SearchBox />
+          <MainPost />
       </Container>
       
     </>
