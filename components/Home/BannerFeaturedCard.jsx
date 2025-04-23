@@ -15,18 +15,19 @@ const features = [
     { title: "Career", icon: <GoGoal className="text-blue-500" />, bg: "bg-blue-100" },
 ];
 
-export default function BannerFeatured() {
+export default function BannerFeaturedCard() {
     return (
         <div className="myContainer flex flex-wrap justify-center gap-4 mb-5">
-            {features.map((feature, index) => (
+            {features.map((data, index) => (
                 <div
                     key={index}
-                    className="w-[100px] h-[100px] rounded-lg border border-[#dee2e6] flex flex-col items-center justify-center text-center hover:scale-108 transition px-2"
+                    className="relative w-[100px] h-[100px] rounded-lg border border-gray-200 flex flex-col items-center justify-center text-center hover:scale-108 transition px-2"
                 >
-                    <div className={`w-12 h-12 flex items-center justify-center rounded-full mb-2 ${feature.bg}`}>
-                        {feature.icon}
+                    <div className={`w-12 h-12 flex items-center justify-center rounded-full mb-2 ${data.bg}`}>
+                        {data.icon}
                     </div>
-                    <p className="text-xs font-semibold leading-tight">{feature.title}</p>
+                    <p className="text-xs font-semibold leading-tight">{data.title}</p>
+                    <a href="#" className="absolute w-full h-full top-0 start-0"></a>
                 </div>
             ))}
         </div>
