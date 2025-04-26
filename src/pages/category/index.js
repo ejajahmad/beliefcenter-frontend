@@ -1,13 +1,11 @@
 import PostCard from "@/components/Global/Card/PostCard";
 import Container from "@/components/Global/Container";
-import Header from "@/components/Global/Header";
 import Link from "next/link";
 import React from "react";
 
 function PostCategory() {
   return (
     <>
-      <Header />
       <section className="section bg-blue-100">
         <Container>
           <div className="text-center">

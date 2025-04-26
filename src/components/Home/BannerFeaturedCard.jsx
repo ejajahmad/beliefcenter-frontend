@@ -3,6 +3,7 @@ import { FaBriefcase } from "react-icons/fa6";
 import { RiShakeHandsLine } from "react-icons/ri";
 import { FaUniversity } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
+import Link from "next/link";
 
 const features = [
     { title: "Admission News", icon: <FaBriefcase className="text-red-500" />, bg: "bg-red-100" },
@@ -27,7 +28,7 @@ export default function BannerFeaturedCard() {
                         {data.icon}
                     </div>
                     <p className="text-xs font-semibold leading-tight">{data.title}</p>
-                    <a href="#" className="absolute w-full h-full top-0 start-0"></a>
+                    <Link href={`#`} className="absolute w-full h-full top-0 start-0"></Link>
                 </div>
             ))}
         </div>

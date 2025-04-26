@@ -5,7 +5,7 @@ import Container from "./Container";
 
 function Header() {
   return (
-    <header className="border-b border-gray-100">
+    <header className="border-b borderlight">
       <Container>
         <div className="flex items-center justify-between py-3">
           <Link href="#">

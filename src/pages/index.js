@@ -1,19 +1,18 @@
 import PostCard from "@/components/Global/Card/PostCard";
 import Container from "@/components/Global/Container";
-import Header from "@/components/Global/Header";
 import BannerFeaturedCard from "@/components/Home/BannerFeaturedCard";
 import FeaturePost from "@/components/Home/FeaturePost";
 import SearchBox from "@/components/Home/SearchBox";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function Home() {
+
   return (
     <>
-      <Header />
       <section className="section">
         <Container>
           <div className="text-center">
-            <h1 className="headingPrimary">DekhoCampus News</h1>
+            <h1 className="headingPrimary text-primary">DekhoCampus News</h1>
             <p className="mt-2 mb-10 text-sm md:text-base text-gray-600 mx-auto">
               Updates on the Latest Career Opportunities, Online Education,
               Online Universities, & more.
