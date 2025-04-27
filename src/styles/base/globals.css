@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "./typography.css";
+@import './variables.css';
+
+.section {
+  @apply py-[30px] lg:py-[45px] xl:py-[60px] 
+}
+.mycontainer {
+  @apply container mx-auto px-6 xl:max-w-[1320px]  
+}
+
+.borderlight {
+  @apply border-gray-200;
+}
+
+.formcontrol {
+  @apply border border-gray-300 w-full rounded-lg p-2 focus:border-blue-100 focus-visible:outline-0 outline-none text-gray-800 placeholder:text-gray-400;
+}
+
+.btnprimary {
+  @apply bg-primary text-white py-1.5 px-4 rounded-md cursor-pointer;
+}
+
+.btnsecondary {
+  @apply bg-secondary text-white py-1.5 px-4 rounded-md cursor-pointer;
+}

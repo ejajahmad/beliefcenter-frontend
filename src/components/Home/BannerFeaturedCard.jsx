@@ -18,11 +18,11 @@ const features = [
 
 export default function BannerFeaturedCard() {
     return (
-        <div className="myContainer flex flex-wrap justify-center gap-4 mb-5">
+        <div className="flex flex-wrap justify-center gap-4 mb-5 text-center">
             {features.map((data, index) => (
                 <div
                     key={index}
-                    className="relative w-[100px] h-[100px] rounded-lg border border-gray-200 flex flex-col items-center justify-center text-center hover:scale-108 transition px-2"
+                    className="relative w-[100px] h-[100px] rounded-lg border border-gray-200 flex flex-col items-center justify-center hover:scale-108 transition px-2"
                 >
                     <div className={`w-12 h-12 flex items-center justify-center rounded-full mb-2 ${data.bg}`}>
                         {data.icon}
