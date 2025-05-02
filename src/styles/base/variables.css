@@ -1,0 +1,7 @@
+@theme {
+    --font-poppins: poppins, sans-serif;
+    --color-primary: #ff9351;
+    --color-secondary: #0466ef;
+    --color-light-blue: theme(colors.blue.100);
+    --color-light: theme(colors.gray.600);
+  }

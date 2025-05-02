@@ -32,11 +32,11 @@ export default function PostDetail() {
               height={300}
               className="w-full h-auto rounded-lg mb-5"
             />
-            <h1 className="headingPrimary mb-5">
+            <h1 className="mb-5">
               Navigating the New Job Market: Career Tips for Students After 12th
               Commerce
             </h1>
-            <div className="flex items-center justify-between mb-6 text-sm font-bold text-gray-500">
+            <div className="flex items-center justify-between mb-6 text-sm font-bold">
               <div className="flex items-center gap-4 md:gap-6">
                 <div className="flex items-center gap-2">
                   <Image

@@ -16,17 +16,17 @@ export default function PostCard() {
         style={{ width: "100%", height: "auto" }}
       />
       <div className="p-3 md:p-4">
-        <h2 className="font-bold truncate">
+        <h2 className="text-base font-bold truncate">
           {" "}
           AP Class 10 Results 2025 Live: 81.14% Pass, Revaluation Details Here
         </h2>
-        <div className="flex items-center justify-between my-4">
-          <span className="text-xs bg-blue-100 px-2 py-0.5 rounded-lg">
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-xs bg-light-blue px-2 py-0.5 rounded-lg">
             Exam News
           </span>
-          <span className="text-sm">March 20, 2025 . 1K Views</span>
+          <span className="text-sm text-light">March 20, 2025 . 1K Views</span>
         </div>
-        <p>
+        <p className="text-sm my-6">
           BSEAP has announced the AP SSC 10th Result 2025. 81.14% of students
           passed. Check district-wise stats, gender performance, revaluation
           and...
@@ -44,13 +44,13 @@ export default function PostCard() {
               />
               <div>
                 <h6 className="text-sm font-semibold">John Doe</h6>
-                <h6 className="text-xs flex gap-1 items-center text-blue-600">
-                  <MdVerified /> Verified
+                <h6 className="text-xs flex gap-1 items-center font-semibold text-primary">
+                  <MdVerified size={15} /> Verified
                 </h6>
               </div>
             </div>
-            <span className="font-bold text-blue-600 text-sm flex items-center">
-              read more <FiChevronsRight className="mt-0.5" />
+            <span className="text-secondary text-sm flex items-center bg-light-blue px-2 py-1 rounded">
+              Read More <FiChevronsRight className="mt-0.5" />
             </span>
           </div>
         </div>

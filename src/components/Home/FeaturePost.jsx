@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import Container from "../Global/Container";
+import Link from "next/link";
 
 export default function FeaturePost() {
   return (
-    <Container>
+    
       <div className="lg:flex items-center">
         <div className="rounded-xl overflow-hidden shadow-sm relative lg:w-3/5">
           <Image
@@ -24,42 +25,46 @@ export default function FeaturePost() {
                 </span>
                 <span className="text-sm">March 22, 2025</span>
               </div>
-              <h2 className="text-base sm:text-lg font-semibold">
+              <h2 className="text-base sm:text-lg font-semibold text-white">
                 Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
               </h2>
             </div>
           </div>
+          <Link href="#" className="absolute h-full w-full start-0 top-0 z-10"></Link>
         </div>
         <div className="lg:w-2/5 lg:ps-6 pt-4 ">
-          <div className="flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
+          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
             <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
             <div>
                 <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold">
+              <h2 className="font-bold text-base">
                 Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
               </h2>
             </div>
+            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
           </div>
-          <div className="flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
+          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
             <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
             <div>
                 <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold">
+              <h2 className="font-bold text-base">
                 Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
               </h2>
             </div>
+            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
           </div>
-          <div className="flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
+          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
             <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
             <div>
                 <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold">
+              <h2 className="font-bold text-base">
                 Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
               </h2>
             </div>
+            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
           </div>
         </div>
       </div>
-    </Container>
+      
   );
 }
