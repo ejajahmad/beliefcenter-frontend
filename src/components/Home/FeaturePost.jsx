@@ -1,70 +1,83 @@
-import Image from "next/image";
-import React from "react";
-import Container from "../Global/Container";
-import Link from "next/link";
+"use client";
 
-export default function FeaturePost() {
+import { useEffect, useState } from "react";
+import { readItems } from "@directus/sdk";
+import moment from "moment";
+import Image from "next/image";
+import Link from "next/link";
+import directusClient from "../../../lib/directus-client";
+import { getDirectusImageUrl } from "../../../lib/helpers";
+
+export default function NewFeaturedPosts() {
+  const [featuredPosts, setFeaturedPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchFeaturedPosts() {
+      try {
+        const response = await directusClient.request(
+          readItems("blog_config", {
+            fields: ["featured_posts.blog_post_id.*"],
+            limit: 1,
+          })
+        );
+
+        const posts = response?.featured_posts?.map((item) => item.blog_post_id).filter(Boolean) || [];
+        console.log("Featured Posts:", posts);
+        setFeaturedPosts(posts);
+      } catch (error) {
+        console.error("Error fetching featured posts:", error);
+      }
+    }
+
+    fetchFeaturedPosts();
+  }, []);
+
+  if (!featuredPosts.length) return null;
+
   return (
-    
-      <div className="lg:flex items-center">
-        <div className="rounded-xl overflow-hidden shadow-sm relative lg:w-3/5">
-          <Image
-            src="/images/2w2.jpeg"
-            alt="Main Post"
-            width={500}
-            height={300}
-            style={{ width: "100%", height: "auto" }}
-            objectFit="cover"
-            priority
-          />
-          <div className="absolute top-0 start-0 flex items-end h-full w-full text-white p-4 bg-[linear-gradient(0deg,_rgba(0,80,201,0.765)_0%,_rgba(0,0,0,0)_100%)]">
-            <div>
-              <div className="space-x-2 mb-2">
-                <span className="bg-orange-500 text-white text-xs font-semibold px-2 pb-0.5 rounded-xl">
-                  Featured
-                </span>
-                <span className="text-sm">March 22, 2025</span>
-              </div>
-              <h2 className="text-base sm:text-lg font-semibold text-white">
-                Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
-              </h2>
-            </div>
-          </div>
-          <Link href="#" className="absolute h-full w-full start-0 top-0 z-10"></Link>
+    <div className="container mx-auto px-4 mb-8">
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Main Featured Post */}
+        <div className="lg:w-2/3">
+          <FeaturedPost post={featuredPosts[0]} />
         </div>
-        <div className="lg:w-2/5 lg:ps-6 pt-4 ">
-          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
-            <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
-            <div>
-                <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold text-base">
-                Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
-              </h2>
-            </div>
-            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
-          </div>
-          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
-            <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
-            <div>
-                <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold text-base">
-                Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
-              </h2>
-            </div>
-            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
-          </div>
-          <div className="relative flex gap-2 sm:gap-4 items-center mb-4 lg:mb-6">
-            <Image src="/images/2w2.jpeg" alt="Post" className="rounded-md" width={150} height={100} />
-            <div>
-                <span className="text-sm">March 20, 2025</span>
-              <h2 className="font-bold text-base">
-                Top 10 PU Colleges in Punjab 2025–26 – Best PU Colleges Ranked
-              </h2>
-            </div>
-            <Link href="#" className="absolute h-full w-full top-0 start-0"></Link>
-          </div>
+
+        {/* Side Posts */}
+        <div className="lg:w-1/3 flex flex-col gap-4">
+          {featuredPosts.slice(1, 4).map((post) => (
+            <SidePost key={post.id} post={post} />
+          ))}
         </div>
       </div>
-      
+    </div>
   );
 }
+
+const FeaturedPost = ({ post }) => (
+  <Link href={`/news/${post.slug}`} className="group block relative rounded-xl overflow-hidden">
+    <div className="relative w-full h-[400px]">
+      <Image src={getDirectusImageUrl(post.featured_image)} alt={post.title} fill className="object-cover" priority />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-800/80 to-transparent" />
+    </div>
+    <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">Featured</span>
+        <span className="text-white text-sm">{moment(post.date_created).format("MMMM DD, YYYY")}</span>
+      </div>
+      <h2 className="text-white text-xl font-semibold">{post.title}</h2>
+    </div>
+  </Link>
+);
+
+const SidePost = ({ post }) => (
+  <Link href={`/news/${post.slug}`} className="group flex items-center gap-4">
+    <div className="relative w-[150px] h-[100px] rounded-lg overflow-hidden shrink-0">
+      <Image src={getDirectusImageUrl(post.featured_image)} alt={post.title} fill className="object-cover" />
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition" />
+    </div>
+    <div className="flex flex-col justify-center">
+      <span className="text-sm text-gray-500">{moment(post.date_created).format("MMMM DD, YYYY")}</span>
+      <h3 className="text-base font-semibold text-gray-900">{post.title}</h3>
+    </div>
+  </Link>
+);
