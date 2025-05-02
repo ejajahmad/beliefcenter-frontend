@@ -1,36 +1,88 @@
-import React from "react";
-import { FaBriefcase } from "react-icons/fa6";
-import { RiShakeHandsLine } from "react-icons/ri";
-import { FaUniversity } from "react-icons/fa";
-import { GoGoal } from "react-icons/go";
-import Link from "next/link";
+"use client";
 
-const features = [
-    { title: "Admission News", icon: <FaBriefcase className="text-red-500" />, bg: "bg-red-100" },
-    { title: "Trending News", icon: <FaBriefcase className="text-gray-600" />, bg: "bg-gray-100" },
-    { title: "Job Opportunities", icon: <RiShakeHandsLine className="text-yellow-600" />, bg: "bg-yellow-100" },
-    { title: "College News", icon: <FaUniversity className="text-purple-600" />, bg: "bg-purple-100" },
-    { title: "Exam News", icon: <FaBriefcase className="text-pink-500" />, bg: "bg-pink-100" },
-    { title: "Success Stories", icon: <FaBriefcase className="text-red-500" />, bg: "bg-red-100" },
-    { title: "Scholarships", icon: <FaBriefcase className="text-green-500" />, bg: "bg-green-100" },
-    { title: "Career", icon: <GoGoal className="text-blue-500" />, bg: "bg-blue-100" },
-];
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { FaBriefcase } from "react-icons/fa";
+import { readItems } from "@directus/sdk";
+import directusClient from "../../../lib/directus-client";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function BannerFeaturedCard() {
-    return (
-        <div className="myContainer flex flex-wrap justify-center gap-4 mb-5">
-            {features.map((data, index) => (
-                <div
-                    key={index}
-                    className="relative w-[100px] h-[100px] rounded-lg border border-gray-200 flex flex-col items-center justify-center text-center hover:scale-108 transition px-2"
-                >
-                    <div className={`w-12 h-12 flex items-center justify-center rounded-full mb-2 ${data.bg}`}>
-                        {data.icon}
-                    </div>
-                    <p className="text-xs font-semibold leading-tight">{data.title}</p>
-                    <Link href={`#`} className="absolute w-full h-full top-0 start-0"></Link>
+  const [categories, setCategories] = useState([]);
+
+  const colors = [
+    { bg: "bg-red-100", text: "text-red-500" },
+    { bg: "bg-gray-200", text: "text-gray-600" },
+    { bg: "bg-yellow-100", text: "text-yellow-600" },
+    { bg: "bg-purple-100", text: "text-purple-600" },
+    { bg: "bg-pink-100", text: "text-pink-500" },
+    { bg: "bg-green-100", text: "text-green-500" },
+    { bg: "bg-blue-100", text: "text-blue-600" },
+    { bg: "bg-indigo-100", text: "text-indigo-600" },
+  ];
+
+  useEffect(() => {
+    async function fetchFeaturedCategories() {
+      try {
+        const response = await directusClient.request(
+          readItems("blog_config", {
+            fields: ["featured_categories.categories_id.*"],
+            limit: 1,
+          })
+        );
+
+        const featured = response?.featured_categories || [];
+        const extracted = featured.map((item) => item.categories_id).filter(Boolean);
+
+        setCategories(extracted);
+      } catch (error) {
+        console.error("Error fetching featured categories:", error);
+      }
+    }
+
+    fetchFeaturedCategories();
+  }, []);
+
+  return (
+    <div className="mb-5">
+      <Swiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={5}
+        slidesPerView={2}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          480: { slidesPerView: 4 },
+          768: { slidesPerView: 6 },
+          1200: { slidesPerView: 8 },
+        }}
+        style={{
+          paddingBottom: "3rem",
+        }}
+      >
+        {categories.map((category, index) => {
+          const color = colors[index % colors.length];
+          return (
+            <SwiperSlide key={category.id} className="w-max mx-2">
+              <div className="relative w-[110px] h-[120px] rounded-lg border border-gray-200 flex flex-col items-center justify-start gap-2 text-center hover:scale-105 transition p-2 py-4">
+                <div className={`min-w-12 min-h-12 flex items-center justify-center rounded-full ${color.bg}`}>
+                  {category.icon ? (
+                    <img src={category.icon} alt={category.name} className="w-6 h-6 object-contain" />
+                  ) : (
+                    <FaBriefcase className={`${color.text}`} />
+                  )}
                 </div>
-            ))}
-        </div>
-    );
+                <p className="text-xs font-semibold leading-tight text-center">{category.name}</p>
+                <Link href={`/category/${category.slug}`} className="absolute w-full h-full top-0 start-0" />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
 }
