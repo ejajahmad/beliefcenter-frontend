@@ -13,21 +13,20 @@ export async function getServerSideProps(context) {
     const post_res = await GetNewsBySlug(slug);
     const post = post_res.data.data[0];
 
-    // if (!post) {
-    //   // Redirect to home page
-    //   return {
-    //     redirect: {
-    //       destination: "/",
-    //       permanent: false,
-    //     },
-    //   };
-    // }
+    if (!post) {
+      // Redirect to home page
+      return {
+        redirect: {
+          destination: "/news",
+          permanent: false,
+        },
+      };
+    }
 
     return {
       props: { slug, post },
     };
   } catch (error) {
-    
     console.error(error.response.data);
     return {
       notFound: true,
