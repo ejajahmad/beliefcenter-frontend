@@ -87,7 +87,7 @@ function NewsDetails({ post }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       </Head>
       <div className="bg-gray-50 pt-10">
-        {/* <PostDetail post={post} /> */}
+        <PostDetail post={post} />
       </div>
     </>
   );

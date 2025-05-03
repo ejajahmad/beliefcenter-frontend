@@ -37,7 +37,7 @@ function PostCategory({ slug, category }) {
           <p>Explore posts under {category.name}</p>
         </Container>
       </section>
-      {/* <PostByCategoryGrid category={category} /> */}
+      <PostByCategoryGrid category={category} />
     </>
   );
 }
