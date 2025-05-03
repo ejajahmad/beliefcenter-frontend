@@ -12,13 +12,13 @@ export default function PostCard({ post }) {
     <div className="rounded-lg shadow-md overflow-hidden relative">
       <Link href={`/news/${post.slug}`}>
         <div className="h-[250px] overflow-hidden">
-          <Image
+          {/* <Image
             src={getDirectusImageUrl(post.featured_image)}
             alt="Post"
             width={410}
             height={200}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          /> */}
         </div>
       </Link>
       <div className="p-3 md:p-4">
