@@ -4,6 +4,7 @@ import PostCard from "../Global/Card/PostCard";
 import directusClient from "../../../lib/directus-client";
 import { readItems } from "@directus/sdk";
 import Breadcrumb from "../Global/Breadcrumb";
+import ScrollProgressHeader from "../Global/ScrollProgressHeader";
 
 export default function PostByCategoryGrid({ category }) {
   const [posts, setPosts] = useState([]);
@@ -46,7 +47,8 @@ export default function PostByCategoryGrid({ category }) {
     fetchPosts(nextPage);
   };
   return (
-    <Container>
+    <>
+      <Container>
       <div className="my-3">
         <Breadcrumb
           items={[
@@ -68,5 +70,6 @@ export default function PostByCategoryGrid({ category }) {
         </div>
       )}
     </Container>
+    </>
   );
 }

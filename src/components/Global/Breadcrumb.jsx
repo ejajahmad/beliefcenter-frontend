@@ -4,7 +4,7 @@ import Container from "./Container";
 
 export default function Breadcrumb({ items = [] }) {
   return (
-    <div className="py-3 text-sm">
+    <div className="py-3 text-xs sm:text-sm">
       {items.map((item, index) => (
         <span key={index}>
           {item.href ? (

@@ -49,14 +49,14 @@ export default function BannerFeaturedCard() {
   }, []);
 
   return (
-    <div className="mb-5">
+    <div className="mb-5 mx-auto xl:w-5xl">
       <Swiper
         modules={[Navigation, Pagination]}
-        spaceBetween={5}
         slidesPerView={2}
         pagination={{ clickable: true }}
         breakpoints={{
-          480: { slidesPerView: 4 },
+          340: { slidesPerView: 3 },
+          480: { slidesPerView: 5 },
           768: { slidesPerView: 6 },
           1200: { slidesPerView: 8 },
         }}
@@ -67,8 +67,8 @@ export default function BannerFeaturedCard() {
         {categories.map((category, index) => {
           const color = colors[index % colors.length];
           return (
-            <SwiperSlide key={category.id} className="w-max mx-2">
-              <div className="relative w-[110px] h-[120px] rounded-lg border border-gray-200 flex flex-col items-center justify-start gap-2 text-center hover:scale-105 transition p-2 py-4">
+            <SwiperSlide key={category.id} className="w-max mx-1 sm:mx-2 lg:mx-3">
+              <div className="relative lg:w-[120px] h-[120px] rounded-lg border border-gray-200 flex flex-col items-center justify-start gap-2 text-center hover:scale-105 transition p-2 py-4">
                 <div className={`min-w-12 min-h-12 flex items-center justify-center rounded-full ${color.bg}`}>
                   {category.icon ? (
                     <img src={category.icon} alt={category.name} className="w-6 h-6 object-contain" />

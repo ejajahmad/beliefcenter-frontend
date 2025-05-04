@@ -21,21 +21,21 @@ export default function PostCard({ post }) {
           />
         </div>
       </Link>
-      <div className="p-3 md:p-4">
+      <div className="p-3 sm:p-4">
         <Link href={`/news/${post.slug}`}>
           <h2 className="text-base font-bold truncate">{post.title}</h2>
         </Link>
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex flex-col md:flex-row gap-2 md:items-center justify-between mt-4">
           <Link href={`/news/category/${post.category.slug}`}>
             <span className="text-xs bg-light-blue px-2 py-0.5 rounded-lg">Exam News</span>
           </Link>
-          <span className="text-sm text-light">
+          <span className="text-xs sm:text-sm text-light">
             {moment(post.date_created).format("MMM Do YYYY")} . {formatLargeNumbers(post.views)} Views
           </span>
         </div>
         <p className="text-sm my-6">{post.description.length > 100 ? post.description.slice(0, 100) + "..." : post.description}</p>
         <div className="border-t border-gray-300 mt-4">
-          <div className="flex items-center justify-between mt-4">
+          <div className="sm:flex items-center justify-between mt-3 sm:mt-4">
             <div className="flex gap-2 items-center">
               {post.author?.avatar ? (
                 <Image src={getDirectusImageUrl(post.author.avatar)} alt="Author" width={40} height={40} className="rounded-full" />
@@ -53,7 +53,7 @@ export default function PostCard({ post }) {
                 </h6>
               </div>
             </div>
-            <span className="text-secondary text-sm flex items-center bg-light-blue px-2 py-1 rounded">
+            <span className="text-secondary text-sm flex items-center bg-light-blue px-2 py-1 rounded mt-3 sm:mt-0 justify-center cursor-pointer">
               Read More <FiChevronsRight className="mt-0.5" />
             </span>
           </div>

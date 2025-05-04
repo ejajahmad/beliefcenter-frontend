@@ -6,7 +6,7 @@
   @apply py-[30px] lg:py-[45px] xl:py-[60px] 
 }
 .mycontainer {
-  @apply container mx-auto px-6 xl:max-w-[1320px]  
+  @apply container mx-auto px-3 sm:px-4 lg:px-6 xl:max-w-[1320px]  
 }
 
 .borderlight {

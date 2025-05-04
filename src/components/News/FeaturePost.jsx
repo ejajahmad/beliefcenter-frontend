@@ -59,7 +59,7 @@ const FeaturedPost = ({ post }) => (
       <Image src={getDirectusImageUrl(post.featured_image)} alt={post.title} fill className="object-cover" priority />
       <div className="absolute inset-0 bg-gradient-to-t from-blue-800/80 to-transparent" />
     </div>
-    <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+    <div className="absolute bottom-0 left-0 w-full p-2 sm:p-4 md:p-6 z-10">
       <div className="flex items-center gap-2 mb-2">
         <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">Featured</span>
         <span className="text-white text-sm">{moment(post.date_created).format("MMMM DD, YYYY")}</span>
@@ -70,7 +70,7 @@ const FeaturedPost = ({ post }) => (
 );
 
 const SidePost = ({ post }) => (
-  <Link href={`/news/${post.slug}`} className="group flex items-center gap-4">
+  <Link href={`/news/${post.slug}`} className="group flex flex-col sm:flex-row mb-4 sm:items-center gap-3 md:gap-4">
     <div className="relative w-[150px] h-[100px] rounded-lg overflow-hidden shrink-0">
       <Image src={getDirectusImageUrl(post.featured_image)} alt={post.title} fill className="object-cover" />
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition" />
